@@ -5,51 +5,52 @@ import exceptions.EmployeeNotFoundException;
 import exceptions.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class EmployeeService {
     private static final int LIMIT = 10;
-    private final List<service.Employee> employees;
-
-    public EmployeeService(List<service.Employee> employees) {
-        this.employees = new ArrayList<>();
-    }
+    private final Map<String,Employee> employees = new HashMap<>();
 
 
-    public service.Employee addEmployee(String firstName, String lastName) {
-        service.Employee employee = new service.Employee(firstName, lastName);
-        if (employees.contains(employee)) {
+
+
+    public Employee addEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        String key = getKey(firstName, lastName);
+        if (employees.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
         if (employees.size() < LIMIT) {
-            employees.add(employee);
+            employees.put(key,employee);
             return employee;
         }
         throw new EmployeeStorageIsFullException();
     }
 
-    public service.Employee findEmployee(String firstName, String lastName) {
-        service.Employee employee = new service.Employee(firstName, lastName);
-        for (service.Employee value : employees) {
-            if (Objects.equals(employee, value)) {
-                return employee;
-            }
+    public Employee findEmployee(String firstName, String lastName) {
+        String key = getKey(firstName, lastName);
+        if (!employees.containsKey(key)) {
+            throw new EmployeeNotFoundException();
         }
-        throw new EmployeeNotFoundException();
+        return employees.get(key);
+
     }
 
-    public service.Employee removeEmployee(String firstName, String lastName) {
-        service.Employee employee = new service.Employee(firstName, lastName);
-        if (!employees.contains(employee)) {
-            throw new EmployeeAlreadyAddedException();
+    public Employee removeEmployee(String firstName, String lastName) {
+        String key = getKey(firstName, lastName);
+        if (!employees.containsKey(key)) {
+            throw new EmployeeNotFoundException();
         }
-        return employee;
+       return employees.remove(key);
+
     }
 
     public List<service.Employee> getAll() {
-        return new ArrayList<>(employees);
+        return new ArrayList<>(employees.values());
+    }
+
+    private String getKey(String name,String surname){
+        return name + " " + surname;
     }
 }

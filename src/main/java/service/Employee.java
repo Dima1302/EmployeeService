@@ -1,31 +1,31 @@
 package service;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 import java.util.Objects;
 
 public class Employee {
-    @JsonProperty("firstname")
-    private String name;
-    @JsonProperty("lastname")
-    private String surname;
+
+    private String firstName;
+
+    private String lastName;
 
     public Employee(String firstname, String lastname) {
-        this.name = firstname;
-        this.surname = lastname;
+        this.firstName = firstname;
+        this.lastName = lastname;
     }
 
     public String getName() {
-        return name;
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     @Override
     public String toString() {
-        return "ФИО сотрудника " + name + " " + surname + ". ";
+        return "ФИО сотрудника " + firstName + " " + lastName + ". ";
 
     }
 
@@ -34,12 +34,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
+        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname);
+        return Objects.hash(firstName, lastName);
     }
 }
 
