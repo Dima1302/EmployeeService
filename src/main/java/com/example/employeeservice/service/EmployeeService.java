@@ -1,8 +1,8 @@
-package service;
+package com.example.employeeservice.service;
 
-import exceptions.EmployeeAlreadyAddedException;
-import exceptions.EmployeeNotFoundException;
-import exceptions.EmployeeStorageIsFullException;
+import com.example.employeeservice.exceptions.EmployeeAlreadyAddedException;
+import com.example.employeeservice.exceptions.EmployeeNotFoundException;
+import com.example.employeeservice.exceptions.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,7 +14,7 @@ public class EmployeeService {
     public static Map<String, Employee> getEmployees() {
         return employees;
     }
-    public List<service.Employee> getAll() {
+    public List<Employee> getAll() {
         return new ArrayList<>(employees.values());
     }
 

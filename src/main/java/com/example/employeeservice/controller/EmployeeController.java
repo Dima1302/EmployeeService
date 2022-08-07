@@ -1,11 +1,11 @@
-package controller;
+package com.example.employeeservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import service.Employee;
-import service.EmployeeService;
+import com.example.employeeservice.service.Employee;
+import com.example.employeeservice.service.EmployeeService;
 
 import java.util.List;
 

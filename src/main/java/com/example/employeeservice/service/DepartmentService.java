@@ -1,6 +1,6 @@
-package service;
+package com.example.employeeservice.service;
 
-import exceptions.EmployeeNotFoundException;
+import com.example.employeeservice.exceptions.EmployeeNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
