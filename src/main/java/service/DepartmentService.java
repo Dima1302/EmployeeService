@@ -20,29 +20,29 @@ public class DepartmentService {
     }
 
 
-    public Employee maxSalary(int departament) {
+    public Employee maxSalary(int department) {
         return employeeService.getAll().stream()
-                .filter(employee -> employee.getDepartament() == departament)
+                .filter(employee -> employee.getDepartment() == department)
                 .max(Comparator.comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
 
 
     }
 
-    public Employee minSalary(int departament) {
-        return employeeService.getAll().stream().filter(e -> e.getDepartament() == departament)
+    public Employee minSalary(int department) {
+        return employeeService.getAll().stream().filter(e -> e.getDepartment() == department)
                 .min(Comparator.comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
     public List<Employee> typeAllStuff(int department) {
         return employeeService.getAll().stream()
-                .filter(e -> e.getDepartament() == department).collect(Collectors.toList());
+                .filter(e -> e.getDepartment() == department).collect(Collectors.toList());
 
     }
 
     public Map<Integer, List<Employee>> typeEmployeeNames() {
-        return employeeService.getAll().stream().collect(Collectors.groupingBy(Employee::getDepartament));
+        return employeeService.getAll().stream().collect(Collectors.groupingBy(Employee::getDepartment));
 
     }
 }
