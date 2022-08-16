@@ -2,6 +2,8 @@ package com.example.employeeservice.service;
 
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class Employee {
@@ -13,8 +15,8 @@ public class Employee {
     private final double salary;
 
     public Employee(String firstname, String lastname, int department, double salary) {
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.firstName = StringUtils.capitalize(firstname.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastname.toLowerCase());
         this.department = department;
         this.salary = salary;
     }
